@@ -16,10 +16,13 @@
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-reanimated": "^1.4.0",
+    "react-native-screens": "^2.0.0-beta.8",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-webview": "^8.1.2",
     "react-navigation": "^4.3.7",
     "react-navigation-drawer": "^2.3.3",
     "react-navigation-stack": "^1.10.3",
+    "react-navigation-tabs": "^2.6.2",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
@@ -37,5 +40,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/"
+    ]
   }
 }
