@@ -17,9 +17,7 @@ class SplashScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-               
-                    <Text style={styles.text}>SIMCARD LIST</Text>
-               
+                    <Text style={styles.text}>TEST</Text>
             </SafeAreaView>
         )
     }

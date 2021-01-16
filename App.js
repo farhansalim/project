@@ -4,17 +4,17 @@ import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import RootNavigator from './src/navigators/RootNavigator';
 import store from './store/Store'
-import { StatusBar } from 'react-native';
-
+import { StatusBar } from 'react-native'
+import HomeComponent from './src/components/home/HomeComponent';
 
 const AppContainer = createAppContainer(RootNavigator);
 
 class App extends Component {
   render() {
     return (
-
+      // <HomeComponent/>
       <Provider store={store}>
-        <StatusBar backgroundColor="#3fc0eb" barStyle="light-content" />
+        <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
         <AppContainer />
       </Provider>
     )

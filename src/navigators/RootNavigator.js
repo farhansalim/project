@@ -5,7 +5,6 @@ import SplashScreen from '../screens/SplashScreen';
 
 const RootNavigator = createSwitchNavigator({
     SplashScreen: SplashScreen,
-    // AuthNavigator: AuthNavigator,
     Dashboard: DashboardNavigator,
 },
     { initialRouteName: 'SplashScreen' },
