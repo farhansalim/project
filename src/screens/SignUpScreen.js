@@ -6,36 +6,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import Toast from 'react-native-simple-toast';
 
-const LoginScreen = (props) => {
+const SignUpScreen = (props) => {
     const initialState = {
         email: "",
         password: "",
     };
     const [data, setData] = useState(initialState);
 
-    const onLogin = () => {
+    const onSignUp = () => {
         console.log(data.email, data.password, "farhan")
         const { actions } = props;
         let body = {
-         
             email: data.email,
             password: data.password
         }
-        actions.auth.onLogin(body)
+        actions.auth.onSignUp(body)
             .then(res => {
-                if (res.error) {
-                    Toast.show(res.error)
-                }
-                else {
-                    props.navigation.navigate('HomeScreen')
-                }
-
-
+                Toast.show(res)
+                // props.navigation.navigate('LoginScreen')
             })
             .catch(err => {
                 Toast.show("Failed.Try Again")
 
             })
+
 
     }
     return (
@@ -43,7 +37,7 @@ const LoginScreen = (props) => {
             <View style={styles.subContainer}>
 
                 <View style={styles.footer}>
-                    <Text style={styles.loginText}>Login to your Account</Text>
+                    <Text style={styles.loginText}>Register Account</Text>
                     <View style={styles.inputContainer}>
                         <TextInput style={[styles.inputTextContainer]}
                             placeholderTextColor="#C7C7C7"
@@ -57,16 +51,17 @@ const LoginScreen = (props) => {
                             placeholder="Password"
                             onChangeText={(val) => {
                                 setData({ ...data, password: val });
-                            }} >
+                            }}>
                         </TextInput>
                         <View style={styles.buttonContainer}>
-                            <CommonButton title="Login"
-                                onPress={onLogin} />
+                            <CommonButton title="Register"
+                                onPress={onSignUp} />
                         </View>
-                        <Text onPress={() => props.navigation.navigate('SignUp')}
+                        <Text onPress={() => props.navigation.navigate('LoginScreen')}
                             style={styles.dontText}>
-                            Don't have an account?   <Text style={styles.signText}>Sign up</Text>
+                            Go Back    <Text style={styles.signText}>Login</Text>
                         </Text>
+
                     </View>
                 </View>
             </View>
@@ -75,6 +70,7 @@ const LoginScreen = (props) => {
     )
 
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         actions: {
@@ -85,7 +81,8 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
     connect(null, mapDispatchToProps),
-)(LoginScreen);
+)(SignUpScreen);
+
 
 const styles = StyleSheet.create({
     container: {
@@ -145,7 +142,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     loginText: {
-        // fontFamily: Fonts.OpenSansRegular,
+      //  fontFamily: Fonts.OpenSansRegular,
         fontSize: 16,
         color: "#000",
         fontWeight: "bold",
@@ -164,7 +161,7 @@ const styles = StyleSheet.create({
         width: 280,
         backgroundColor: '#FFFFFF',
         alignSelf: 'stretch',
-        // fontFamily: Fonts.OpenSansSemiBold,
+       // fontFamily: Fonts.OpenSansSemiBold,
         fontSize: 15,
         color: '#484F62',
         borderRadius: 6,
@@ -176,13 +173,13 @@ const styles = StyleSheet.create({
         paddingBottom: 30
     },
     dontText: {
-        // fontFamily: Fonts.OpenSansRegular,
+       // fontFamily: Fonts.OpenSansRegular,
         fontSize: 12,
         color: "#858585",
         alignSelf: "center"
     },
     signText: {
-        // fontFamily: Fonts.OpenSansRegular,
+     //   fontFamily: Fonts.OpenSansRegular,
         fontSize: 14,
         color: "#00B7C9",
     }

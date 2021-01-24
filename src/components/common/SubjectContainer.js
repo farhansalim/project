@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
-import Fonts from "../common/Fonts";
+// import Fonts from "../common/Fonts";
 
 
 const SubjectContainer = props => {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         margin: 15
     },
     title: {
-        fontFamily: Fonts.DMSansMedium,
+        // fontFamily: Fonts.DMSansMedium,
         fontSize: 13,
         color: "#5E5E5E",
         letterSpacing: 0.7,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
     },
     subTitle: {
-        fontFamily: Fonts.DMSansMedium,
+        // fontFamily: Fonts.DMSansMedium,
         fontSize: 10,
         color: "#858585",
         letterSpacing: 0.5,

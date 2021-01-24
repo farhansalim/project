@@ -1,18 +1,17 @@
-import {SEARCH_SUCCESS, SEARCH_FAILURE} from './../../actions/ActionTypes'
+import { LIST_USER_SUCCESS,LIST_USER_FAILURE } from './../../actions/ActionTypes'
 
 export default (state = {}, action) => {
     switch (action.type) {
-        case SEARCH_SUCCESS:
+        case LIST_USER_SUCCESS:
             return Object.assign({}, state, {
-                data: action.payload.data,
-                operators: action.payload.operators,
-                plans: action.payload.plans
+                list: action.payload
             });
-        case SEARCH_FAILURE:
-            return Object.assign({}, state, { 
-                error: action.payload })
+        case LIST_USER_FAILURE:
+            return Object.assign({}, state, {
+                error: action.payload
+            })
 
-      
+
 
     }
 

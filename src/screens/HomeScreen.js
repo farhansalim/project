@@ -1,39 +1,74 @@
 import React, { Component } from 'react'
 import { SafeAreaView, StyleSheet, Text, View, FlatList, ImageBackground, Image, ScrollView } from 'react-native'
-import Fonts from '../components/common/Fonts';
-import CommonButton from '../components/CommonButton';
-import SubjectContainer from './../components/common/SubjectContainer'
-import HomeComponent from '../components/home/HomeComponent';
-const Homescreen = (props) => {
-    return (
-        <SafeAreaView style={styles.container}>
+import * as HomeActions from './../../store/actions/home/HomeActions';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import Toast from 'react-native-simple-toast';
+import UserComponent from '../components/home/UserComponent';
+class Homescreen extends Component {
+
+    componentDidMount = () => {
+        console.log("test")
+        this.fetchData()
+    }
+    fetchData = () => {
+        const { actions } = this.props;
+        actions.home.getUsersList()
+    }
+    onPressUser = (val) => {
+        console.log(val,"val")
+
+        this.props.navigation.navigate('UserDetailScreen', val)
+    }
+
+    render() {
+        const { list } = this.props;
+        console.log(list, "list in scren")
+        return (<SafeAreaView style={styles.container}>
             <ScrollView style={styles.subContainer}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}>
-                <ImageBackground source={require('./../../assets/images/HomeHeaderImage.png')}
-                    style={styles.headerImage}>
-                    <Image source={require('./../../assets/images/Wicon.png')}
-                        style={styles.wImage} />
-                    <View style={styles.subjectListContainer}>
-                        <Text style={styles.goodText}>
-                            Goodmorning
-                        </Text>
-                        <Text style={styles.nameText}>
-                            Ananthu M Mohan
-                        </Text>
-                    </View>
-                </ImageBackground>
-                <View style={{ marginTop: -220 }}>
-                    <HomeComponent
-                        onPress={() => props.navigation.navigate('CompleteScreen')} />
+                <Text style={{ marginBottom: 50, alignSelf: "center", fontSize: 20, fontWeight: "bold" }}>Users</Text>
+                <View style={{ paddingHorizontal: 20 }}>
+                    <FlatList
+                        data={list}
+                        // ListEmptyComponent={this.emptyComponent}
+                        renderItem={({ item }) =>
+                            <UserComponent
+                            onPress={() => this.onPressUser(item)}
+                                name={item.first_name}
+                                img={item.avatar}
+                                email={item.email} />}
+                        keyExtractor={item => item.id}
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}
+
+                    />
+
                 </View>
 
             </ScrollView>
         </SafeAreaView>
-    )
-}
 
-export default Homescreen;
+        )
+    }
+}
+const mapStateToProps = state => ({
+    list: state.homeReducer.list
+
+})
+const mapDispatchToProps = dispatch => {
+    return {
+        actions: {
+            home: bindActionCreators(HomeActions, dispatch),
+        },
+    };
+};
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+)(Homescreen);
+
 
 const styles = StyleSheet.create({
     container: {
@@ -44,46 +79,6 @@ const styles = StyleSheet.create({
     subContainer: {
         flex: 1
     },
-    headerImage: {
-        justifyContent: "flex-start",
-        // width: "100%",
-        height: 400,
-        resizeMode: "contain"
-
-    },
-    footerImage: {
-        justifyContent: "flex-end",
-        height: 252,
-        resizeMode: "contain",
-        // marginTop: -200
-    },
-    wImage: {
-        height: 54,
-        width: 54,
-        position: "absolute",
-        left: 15,
-        top: 20
-    },
-    subjectListContainer: {
-        // height:20,
-        width: "100%",
-        marginTop: 140,
-        paddingLeft: 14,
-        paddingBottom: 23
-    },
-    goodText: {
-        fontFamily: Fonts.DMSansMedium,
-        fontSize: 10,
-        color: "#FFFFFF",
-        letterSpacing: 0.5,
-    },
-    nameText: {
-        fontFamily: Fonts.DMSansMedium,
-        fontSize: 16,
-        color: "#FFFFFF",
-
-    }
-
 
 
 });

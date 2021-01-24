@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import Fonts from '../components/common/Fonts';
 class SplashScreen extends Component {
 
     componentDidMount() {
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     },
     text: {
        fontSize:25,
-       fontFamily:Fonts.OpenSansBold,
+    //    fontFamily:Fonts.OpenSansBold,
        color:"#000"
     },
 

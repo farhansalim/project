@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { SafeAreaView, StyleSheet, Text, View, Image, } from 'react-native'
-import Fonts from '../components/common/Fonts';
 import CommonButton from '../components/CommonButton';
 
 const CompleteScreen = (props) => {

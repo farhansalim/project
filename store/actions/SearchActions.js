@@ -16,9 +16,7 @@ export const searchProducts = (searchInput,
     simType,
     simOpertaor) => {
 
-
     return dispatch => {
-
         const details = {
             search: searchInput,
             type: simType,
